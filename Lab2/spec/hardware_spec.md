@@ -49,7 +49,7 @@ inputs). This module exists at `src/axis_filter.v`.
 | PS Interface       | Direction | Purpose                           |
 |--------------------|-----------|-----------------------------------|
 | M_AXI_HPM0_FPD     | PS→PL     | Control + data path to PL IPs     |
-| S_AXI_HP0_FPD      | PL→PS     | data path to PS                   |
+| S_AXI_HPC0_FPD     | PL→PS     | data path to PS                   |
 | pl_ps_irq0         | PL→PS     | Interrupt input                   |
 | pl_clk0            | PS→PL     | 100 MHz PL fabric clock           |
 | pl_resetn0         | PS→PL     | Active-low reset                  |
@@ -92,7 +92,7 @@ Masters connecting to SmartConnect-1:
 - SI[2]: DMA M_AXI_S2MM (writes result data to DDR)
 
 Slaves connecting to SmartConnect-1:
-- SI[0]: PS S_AXI_HP0_FPD (PL access DDR)
+- SI[0]: PS S_AXI_HPC0_FPD (PL access DDR)
 
 
 ## 4. Address Map
@@ -102,9 +102,9 @@ Slaves connecting to SmartConnect-1:
 Network 0 is in the PL AXI_DMA address space and accessible
 by DMA MM2S, and DMA S2MM masters:
 
-| Peripheral      | Base Address  | Size   | Accessed By           |
-|-----------------|---------------|--------|-----------------------|
-| PS S_AXI_HP0_FPD| 0x0000_0000   | 2 GB   | DMA MM2S + S2MM       |
+| Peripheral       | Base Address  | Size   | Accessed By           |
+|------------------|---------------|--------|-----------------------|
+| PS S_AXI_HPC0_FPD| 0x0000_0000   | 2 GB   | DMA MM2S + S2MM       |
 
 **Network 1** 
 
