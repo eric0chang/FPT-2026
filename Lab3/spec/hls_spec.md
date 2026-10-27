@@ -150,8 +150,7 @@ The flow runs to **cosim and IP export**, with one csynth run:
    any tool for the report.
 
 All Tcl goes in `hls/run_hls.tcl`, with the steps as arguments
-(e.g. `vitis_hls -f run_hls.tcl -tclargs csim csynth`, later `-tclargs cosim export`; if
-`vitis_hls` is not installed, run the same script with `vitis-run --mode hls --tcl`);
+(e.g. `vitis_hls -f run_hls.tcl -tclargs csim csynth`, later `-tclargs cosim export`);
 project name `lenet_prj`, solution `solution1`. Add
 `config_rtl -reset all -reset_level low`: a previous attempt on this board relied on
 power-on register values and produced wrong results in hardware.
