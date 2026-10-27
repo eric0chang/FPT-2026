@@ -7,10 +7,10 @@
 | Board            | Zynq UltraScale+ AUP-ZU3 8GB Development Board |
 | FPGA Part        | xczu3eg-sfvc784-2-e (ZynqUS+ MPSoC)     |
 | Board Part       | realdigital.org:aup-zu3-8gb:part0:1.0   |
-| Vivado Version   | 2023.2 (the Vivado MCP server is configured for it) |
-| Board files      | `board_files/` in this folder. Vivado 2023.2 does not ship them: run `set_param board.repoPaths <Lab3>/board_files` before `open_project` / `create_project`. |
+| Vivado Version   | 2025.2                                  |
+| Board files      | `board_files/` in this folder. If Vivado does not list the board part, run `set_param board.repoPaths <Lab3>/board_files` before `open_project` / `create_project`. |
 
-Use the same Vivado version as the Vitis HLS that exported the IP (2023.2). Drive
+Use the same Vivado version as the Vitis HLS that exported the IP (2025.2). Drive
 Vivado through the Vivado MCP server.
 
 Paths in this spec are relative to the `Lab3/` folder; pass them to Vivado as absolute

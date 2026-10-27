@@ -32,7 +32,7 @@ Lab3/
 ├── data/
 │   ├── mnist_test_1000.npz     # 1000 test images + labels + Keras outputs
 │   └── make_test_data.py       # How the .npz was generated
-├── board_files/aup-zu3-8gb/    # AUP-ZU3 board files (RealDigital) for Vivado 2023.2
+├── board_files/aup-zu3-8gb/    # AUP-ZU3 board files (RealDigital), used if Vivado does not have them
 ├── pynq/
 │   └── lenet_inference.ipynb   # Verification PYNQ example
 └── prompts.md                  # Full prompt library
@@ -48,7 +48,7 @@ Lab3/
 | AI agent | Claude Code CLI (`claude`) |
 | HLS Knowledge Base | KB API reachable (read-only); the skill is already in `.claude/skills/kb-skill/` |
 | Vivado MCP server | Configured for Claude Code, same as Lab2 |
-| Vitis HLS / Vivado | 2023.2 |
+| Vitis HLS / Vivado | 2025.2 |
 | Board | AUP-ZU3 8GB with a PYNQ image |
 
 ## Step-by-Step Instructions

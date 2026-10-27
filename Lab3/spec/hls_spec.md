@@ -14,8 +14,8 @@ from scratch in C++**. The IP replaces the
 |------------------|------------------------------------------------------------|
 | FPGA Part        | xczu3eg-sfvc784-2-e (AUP-ZU3)                              |
 | Clock            | 10 ns (100 MHz, driven by PS `pl_clk0`)                    |
-| Vitis HLS        | 2023.2 — `vitis_hls` on the `PATH` (otherwise source `<Xilinx install>/Vitis_HLS/2023.2/settings64.sh`) |
-| Python           | `python3` with TensorFlow 2.x — only for reading the `.h5` |
+| Vitis HLS        | 2025.2                                                     |
+| Python           | TensorFlow 2.x (only for reading the `.h5`)                |
 
 Past designs in the Knowledge Base may target other parts (e.g. `xcu250-figd2104-2L-e`);
 use this part and clock in `set_part` / `create_clock`.
@@ -150,7 +150,8 @@ The flow runs to **cosim and IP export**, with one csynth run:
    any tool for the report.
 
 All Tcl goes in `hls/run_hls.tcl`, with the steps as arguments
-(e.g. `vitis_hls -f run_hls.tcl -tclargs csim csynth`, later `-tclargs cosim export`);
+(e.g. `vitis_hls -f run_hls.tcl -tclargs csim csynth`, later `-tclargs cosim export`; if
+`vitis_hls` is not installed, run the same script with `vitis-run --mode hls --tcl`);
 project name `lenet_prj`, solution `solution1`. Add
 `config_rtl -reset all -reset_level low`: a previous attempt on this board relied on
 power-on register values and produced wrong results in hardware.
