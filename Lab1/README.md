@@ -31,10 +31,11 @@ axi4-debug-simulation/
 ## Step-by-Step Instructions
 
 ### Step 1 — Create the Vivado project
+When you are in vivado environment, (vivado%)
 
 ```bash
 cd axi4-debug-simulation/
-vivado -mode batch -source scripts/create_project.tcl
+source scripts/create_project.tcl
 ```
 
 > **Note:** This takes approximately 1–2 minutes. The script creates the project, generates the AXI VIP and Protocol Checker IPs, and configures two simulation filesets.
