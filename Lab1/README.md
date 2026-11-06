@@ -57,7 +57,7 @@ Ensure your MCP configuration is set up.
 
 **Full debug session:**
 ```
-Open the axi_master_sim project, list the simulation filesets, and run the sim_bugs testbenches to find and fix AXI protocol violations.
+Open the axi_master_sim project, list the simulation filesets, and run the sim_bugs testbenches to find and fix AXI protocol violations. And screenshot the waveform of all bugs and circule error waveform.
 ```
 
 **Single bug:**
