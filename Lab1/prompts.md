@@ -8,7 +8,7 @@ Copy-paste any of these prompts into your AI agent chat after the project has be
 
 **First-time run (recommended):**
 ```
-Open the axi_master_sim project, list the simulation filesets, and run the sim_bugs testbenches to find and fix AXI protocol violations. And screenshot the waveform of all bugs and circule error waveform.
+Open the axi_master_sim project, list the simulation filesets, and run the sim_bugs testbenches to find and fix AXI protocol violations.
 ```
 
 **If you know which testbench to start with:**
