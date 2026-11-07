@@ -149,9 +149,10 @@ The flow runs to **cosim and IP export**, with one csynth run:
    the final IP path. Take the numbers from the existing logs and reports; do not re-run
    any tool for the report.
 
-All Tcl goes in `hls/run_hls.tcl`, with the steps as arguments
-(e.g. `vitis_hls -f run_hls.tcl -tclargs csim csynth`, later `-tclargs cosim export`);
-project name `lenet_prj`, solution `solution1`. Add
+All Tcl goes in `hls/run_hls.tcl`; it reads the steps to run from the environment
+variable `STEPS` (Vitis 2025.2 has no `vitis_hls` command, and `vitis-run` takes no
+`-tclargs`), e.g. `STEPS="csim csynth" vitis-run --mode hls --tcl run_hls.tcl`, later
+`STEPS="cosim export" vitis-run --mode hls --tcl run_hls.tcl`; project name `lenet_prj`, solution `solution1`. Add
 `config_rtl -reset all -reset_level low`: a previous attempt on this board relied on
 power-on register values and produced wrong results in hardware.
 
