@@ -19,7 +19,7 @@ This document will guide user how to link remote server and setup LLM and Vivado
 <br>
 <br>
 
-## Setup Local LLM
+## Setup LLM
 - Open Chat box
   <img width="2562" height="1377" alt="image" src="https://github.com/user-attachments/assets/303c2b72-c481-4817-9961-0e87c87b63bc" />
 - Select **Local** in CHAT box
