@@ -98,6 +98,62 @@ The AXI Protocol Checker (PG101) validates these rules per ARM IHI0022H:
 | **AR** (Read Address) | `ARVALID_RESET`, `ARVALID_STABLE` | Same as AW channel |
 | **R** (Read Data) | `RVALID_RESET`, `RDATA_NUM`, `RLAST` | Wrong beat count, missing RLAST |
 
+
+
+## Result Summary
+|#|	Testbench | Failure time | Root cause | Fix applied |
+|-|-----------|--------------|------------|------------ |
+|1|	tb_axi_master_bug1 | 285 ns | WLAST driven on beat 0 instead of the last beat | wlast = (beat_q == cur_len) | 
+|2|	tb_axi_master_bug2 | 205 ns | FSM reset into ST_WR_ADDR, so AWVALID was high during reset | reset state ST_WR_ADDR → ST_IDLE | 
+|3|	tb_axi_master_bug3 | 285 ns | WDATA driven from the undriven wdata_from_fifo | wdata = cur_beat_wdata | 
+|4|	tb_axi_master_bug4 | 535 ns | AWVALID inferred as a latch and never dropped | awvalid_latch = (state_q == ST_WR_ADDR) | 
+|5|	tb_axi_master_bug5 | 2235 ns | FSM skipped ST_WR_RESP, so BREADY was never asserted | last beat → ST_WR_RESP | 
+<br>
+tb_axi_master_bug1
+
+- bug
+  <img width="2000" height="787" alt="image" src="https://github.com/user-attachments/assets/a74035a7-ef63-408f-a6f9-2534512cfc23" /> <br>
+
+- fix
+  <img width="2000" height="787" alt="image" src="https://github.com/user-attachments/assets/f8c2505a-2aba-4fdb-91c6-2572ea097c7d" /> <br>
+
+<br>
+tb_axi_master_bug2
+
+- bug
+  <img width="2000" height="547" alt="image" src="https://github.com/user-attachments/assets/011eaa42-12f7-474a-a00e-0ba01bccd24d" /> <br>
+ 
+- fix
+  <img width="2000" height="547" alt="image" src="https://github.com/user-attachments/assets/64114436-b2a7-418a-a65e-fb51b3e8531d" /> <br>
+
+<br>
+tb_axi_master_bug3
+
+- bug
+  <img width="2000" height="787" alt="image" src="https://github.com/user-attachments/assets/eb24a6dd-639f-4c92-a309-05384746388c" /> <br>
+
+- fix
+  <img width="2000" height="787" alt="image" src="https://github.com/user-attachments/assets/51ebd9ed-9b1f-45f5-82fd-65cae1ba4b88" /> <br>
+
+<br>
+tb_axi_master_bug4
+
+- bug
+  <img width="2000" height="847" alt="image" src="https://github.com/user-attachments/assets/4d28fafd-5f15-4c00-b2f8-75ed737e222c" /> <br>
+
+- fix
+  <img width="2000" height="847" alt="image" src="https://github.com/user-attachments/assets/5d543ad9-4b9f-44ae-bd07-33a69dfd66b1" /> <br>
+
+<br>
+tb_axi_master_bug5
+
+- bug
+  <img width="2000" height="787" alt="image" src="https://github.com/user-attachments/assets/690bdb85-1129-42e0-8fa6-a42b6c65b24f" /> <br>
+
+- fix
+  <img width="2000" height="787" alt="image" src="https://github.com/user-attachments/assets/f83b9684-0c21-437f-88dc-4240104e7249" /> <br>
+
+
 ## What You'll Learn
 
 - How **natural language prompts** drive a full simulation debug workflow — the agent runs XSim, reads assertion logs, opens waveforms, and applies RTL fixes
