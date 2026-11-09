@@ -1,6 +1,6 @@
-# Topic 16: Lessons from past designs (5 rules)
+# Topic 16: Lessons from past designs (6 rules)
 
-Covers: reusing a Track 1 design, convolution loop structure, latency estimates, reading csynth timing. Learned from earlier runs of this kind of design, not from UG1399; read this topic for every design. Full rule: `../EXP/<ID>.md`.
+Covers: reusing a Track 1 design, convolution loop structure, latency estimates, reading csynth timing, float accumulation. Learned from earlier runs of this kind of design, not from UG1399; read this topic for every design. Full rule: `../EXP/<ID>.md`.
 
 | ID | Type | Summary | Tags |
 |---|---|---|---|
@@ -9,3 +9,4 @@ Covers: reusing a Track 1 design, convolution loop structure, latency estimates,
 | EXP-002 | direction | For a convolution over a streamed image, do not pipeline only a short inner MAC loop inside a non-pipelined pixel loop: every pixel then pays the pipeline fill and drain. Write the layer as one flat II=1 loop over (pixel, step), or pipeline the pixel loop itself. | pipeline, flatten, conv, latency, nested-loop |
 | EXP-003 | recipe | Before csynth, estimate each layer's latency as its loop steps at II=1 (e.g. pixels x steps per pixel) and add them up; after csynth, any layer more than 2x its estimate has a loop-structure problem, not too little parallelism. | latency, estimate, csynth-report |
 | EXP-004 | recipe | When csynth reports a Timing issue (negative Slack, estimated clock above the target), first find the module whose Slack is negative in the Performance table and the HLS 200-871 / 200-1016 messages in the log, which name the operations on the long path; change that code, not code you guess. | timing, slack, critical-path, csynth-report |
+| EXP-005 | must | Do not accumulate in float inside a loop (e.g. the softmax sum of exponentials): sum in ap_fixed / ap_ufixed (e.g. ap_ufixed<32,4> for ten values in [0,1]) and convert to float once, if at all. | float, accumulator, timing, softmax |

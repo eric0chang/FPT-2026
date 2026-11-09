@@ -112,12 +112,11 @@ no separate calibration set is provided.
 |--------------------------------|-------------------------------------------------|
 | Estimated clock (csynth)       | ≤ 10 ns, no timing violation                    |
 | LUT / FF / DSP / BRAM          | each ≤ 20 % of xczu3eg, csynth estimate (DSP ≤ 36 of 360). A small IP keeps the Vivado build short; prefer fewer parallel MACs over lower latency |
-| Latency per image              | goal ≤ 20,000 cycles (200 µs @ 100 MHz), csynth worst case; report csynth and cosim latency |
+| Latency per image              | no limit; report csynth and cosim latency       |
 | Deadlock warnings              | no `HLS 200-656` in the final csynth log — cosim PASS alone is not enough, the board runs far more images than cosim |
 
 Correctness comes first. Design for these limits before the first csynth (§6 allows a
-single csynth run); if the latency goal is not reached but §5.1 and the resource/timing
-limits pass, export it anyway.
+single csynth run).
 
 
 ## 6. Flow & Deliverables
@@ -137,7 +136,7 @@ The flow runs to **cosim and IP export**, with one csynth run:
    word, checks §5.1 on those images, prints a PASS/FAIL summary and returns non-zero on
    failure.
 3. **csim** (20 images) **→ csynth, once**. Re-run csynth only to fix a violation of
-   §5.2 (resources, timing, `HLS 200-656`), at most once more; not to improve latency.
+   §5.2 (resources, timing, `HLS 200-656`), at most twice more; not to improve latency.
 4. **cosim** on **2 images** (`cosim_design -tool xsim -argv 2`). Must PASS.
 5. **Export**: `export_design -format ip_catalog -vendor xilinx.com -library hls -version 1.0`.
    Expected output: `hls/lenet_prj/solution1/impl/ip/` (contains `component.xml` and

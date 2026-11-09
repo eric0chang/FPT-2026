@@ -23,8 +23,10 @@ block; §2–§7 describe the resulting design.
 
 1. **Find** the Lab2 project: `../Lab2/vivado/*.xpr`, otherwise any `*.xpr` under `../Lab2/`
    whose block design `design_1` contains the `axis_filter` module reference.
-2. **Copy** it: `open_project` the Lab2 `.xpr`, then
-   `save_project_as aup_zu3_lenet <Lab3>/vivado -force`. All further changes go to the copy;
+2. **Copy** it: start a new Vivado session for this task (do not reuse a session left by an
+   earlier run), `open_project` the Lab2 `.xpr`, then
+   `save_project_as aup_zu3_lenet <Lab3>/vivado -exclude_run_results -force` (copies the sources,
+   not Lab2's synthesis/implementation results). All further changes go to the copy;
    never modify or re-run the Lab2 project.
 3. **Swap** in `design_1`:
    - delete the `axis_filter` cell and remove `axis_filter.v` from the project sources;

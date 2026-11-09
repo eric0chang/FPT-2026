@@ -1,4 +1,4 @@
-# HLS rule library — 230 rules (AMD UG1399 v2023.2, tutorial subset) + 5 lessons from past designs
+# HLS rule library — 230 rules (AMD UG1399 v2023.2, tutorial subset) + 6 lessons from past designs
 
 How to use (details: `reference/kb-guide.md`, Track 2):
 1. Pick the topics your design touches from the table below and read only those files (`topics/<file>`); do not read all of them. Always read topic 16.
@@ -22,4 +22,4 @@ Types: `must` / `must-not` = requirement (otherwise synthesis error, wrong resul
 | 13 | Resources, binding and sharing | 11 | topics/13-resources-binding-and-sharing.md | BIND_OP, ALLOCATION, DSP mapping, operator sharing, expression balancing |
 | 14 | Unsupported constructs and coding rules | 11 | topics/14-unsupported-constructs-and-coding-rules.md | dynamic memory, pointers, volatile, system calls, __SYNTHESIS__, undefined behaviour |
 | 15 | Reports, timing and tool flow | 17 | topics/15-reports-timing-and-tool-flow.md | reading synthesis reports, clock/timing, tool settings, runtime, general design flow |
-| 16 | Lessons from past designs (always read) | 5 | topics/16-lessons-from-past-designs.md | reusing a Track 1 design, convolution loop structure, latency estimate, reading csynth timing (`EXP-###`, not UG1399) |
+| 16 | Lessons from past designs (always read) | 6 | topics/16-lessons-from-past-designs.md | reusing a Track 1 design, convolution loop structure, latency estimate, reading csynth timing, float accumulation (`EXP-###`, not UG1399) |
