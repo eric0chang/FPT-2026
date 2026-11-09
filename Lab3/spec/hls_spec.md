@@ -158,6 +158,9 @@ power-on register values and produced wrong results in hardware.
 
 Test vectors go in `lenet_tb_data.inc`, not embedded in `lenet_tb.cpp`.
 
+Temporary files (scratch builds, Python environments) go under `hls/`, not `/tmp`: the
+server is shared, and files other users left in `/tmp` can collide with yours.
+
 ```
 hls/
 ├── lenet.h  lenet.cpp  lenet_tb.cpp

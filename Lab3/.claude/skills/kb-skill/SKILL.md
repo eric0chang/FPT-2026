@@ -20,3 +20,17 @@ This SKILL.md is only an entry point. The procedure lives in `reference/kb-guide
 - Rules come only from `rules/` (IDs `HLS-####`, from AMD UG1399 v2023.2). Cite them by ID; do not cite `R###` / `P###` codes.
 - The task specification takes precedence over a rule or a past design when they conflict (e.g. interface, target part, data types).
 - Do not fabricate API results or rule content. If the API is unreachable or returns nothing, say so and continue with Track 2.
+
+## Show the KB use in the chat (not only in tool calls)
+
+Write these two blocks as chat text, before writing any HLS code:
+
+**KB Track 1 — similar designs**
+| Design | Part | Latency | What I reuse / what I change |
+(the top 1–3 results; say "none relevant" if so)
+
+**KB Track 2 — rules I will apply**
+| Rule | What it says (one line) | Where in my code |
+(only rules whose file you opened)
+
+When a later step follows a rule, name it (e.g. "pipelining the MAC loop, HLS-1032").
