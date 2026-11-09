@@ -32,7 +32,7 @@ Unknown `project_type` returns `200` with `results: []`. Types in use: `cnn`, `a
 0. Write in the chat: `**KB Track 1** — searching past <type> designs in the KB...`
 1. Query the design's type, e.g. `curl -s "$KB/api/design/similar?project_type=cnn&limit=10" | jq '.results[] | {project_name, iteration_id, latency_cycles, resource_usage, approach_description, pragmas_used}'`.
 2. Pick the 1–3 entries closest to the task (same kind of model, same interface, same target). Read `approach_description`, `pragmas_used`, `cursor_reasoning`; parse `resource_usage` with `jq 'fromjson'`.
-3. For the closest entry, fetch the code: `curl -s "$KB/api/design/<iteration_id>/code" | jq -r '.code_snapshot'`. Reuse what fits; adapt everything the task specification defines differently (interface, data types, part, clock).
+3. For the closest entry, fetch the code: `curl -s "$KB/api/design/<iteration_id>/code" | jq -r '.code_snapshot'`. If it matches the task's interface and model, start from this code: copy its functions and loop structure, then change only what the task specification defines differently (data types, lanes to meet the resource limits, part, clock) — EXP-000. Do not rewrite its structure from scratch.
 4. Note what you took: project name, iteration, and the techniques reused. Use `pragmas_used` to pick topics in Track 2.
 5. Write in the chat: `**KB Track 1 result**`, a table | Design | Part | Latency | Resources | What I reuse / what I change | (1–3 rows, or "none relevant"), then one line: which design you follow and why. Compare its resources and latency with the spec limits, and say what you change to meet them.
 
@@ -41,15 +41,15 @@ Older entries may cite retired `R###` / `P###` codes. Read them as plain text; c
 
 ## Track 2: rule library (local files)
 
-230 rules in 12 topics — a subset of the full library, chosen for single-kernel AXI-Stream IP in the Vivado IP flow. Rule types: `must` / `must-not` (otherwise synthesis error, wrong results, deadlock or an ignored pragma), `recipe` (how to get an effect), `direction` (trade-off with its condition), `pitfall` (symptom -> cause -> fix).
+230 UG1399 rules in 12 topics, plus topic 16 (5 `EXP-###` lessons from past designs, always read it) — a subset of the full library, chosen for single-kernel AXI-Stream IP in the Vivado IP flow. Rule types: `must` / `must-not` (otherwise synthesis error, wrong results, deadlock or an ignored pragma), `recipe` (how to get an effect), `direction` (trade-off with its condition), `pitfall` (symptom -> cause -> fix).
 
-**Step 1: Pick topics.** Read `rules/index.md` (topic table only, about 25 lines). From the task specification and the Track 1 results, list the topics this design touches — usually several. Example: an AXI-Stream CNN accelerator touches *Interfaces and block protocols*, *Streams and FIFOs*, *Loops, pipelining and II*, *Arrays and on-chip memory*, *Data types*, *Verification*, plus *Dataflow* if it is split into tasks. Then write in the chat: `**KB Track 2** — topics I picked: <number and name of each>`.
+**Step 1: Pick topics.** Read `rules/index.md` (topic table only, about 25 lines). From the task specification and the Track 1 results, list the topics this design touches — usually several. Example: an AXI-Stream CNN accelerator touches *Interfaces and block protocols*, *Streams and FIFOs*, *Loops, pipelining and II*, *Arrays and on-chip memory*, *Data types*, *Verification*, plus *Dataflow* if it is split into tasks, and always *16 Lessons from past designs*. Then write in the chat: `**KB Track 2** — topics I picked: <number and name of each>`.
 
 **Step 2: Read those topic files.** Read only `rules/topics/<file>` of the topics you picked. In each file:
 - every `must` / `must-not` row whose condition can occur in this design is a constraint (these rows come first);
 - `recipe` / `direction` / `pitfall` rows that fit the planned structure are candidates.
 
-**Step 3: Open the rule files.** For every candidate you apply, and every constraint you are unsure about, read `rules/HLS/<ID>.md`: mechanism, exact conditions, cost, how to check the effect (report line or warning), UG1399 page.
+**Step 3: Open the rule files.** For every candidate you apply, and every constraint you are unsure about, read `rules/HLS/<ID>.md` (or `rules/EXP/<ID>.md`): mechanism, exact conditions, cost, how to check the effect (report line or warning), UG1399 page.
 
 **Step 4: Report, before writing any HLS code.** Write in the chat: `**KB Track 2 result**`, a table | Rule | What it says (one line) | Where in my code | — only rules whose file you opened. Write it before running anything else (tool checks, Python, file writes). Keep it to the 5–10 rules that matter most.
 

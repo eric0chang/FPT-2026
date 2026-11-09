@@ -22,12 +22,12 @@ Later, when a step follows a rule, name it (e.g. "pipelining the MAC loop, HLS-1
 ## Files
 
 - `reference/kb-guide.md` — KB API (Track 1), rule lookup (Track 2), how to cite rules
-- `rules/index.md` — topic table (12 topics); `rules/topics/<file>` — one row per rule; `rules/HLS/<ID>.md` — full rule
+- `rules/index.md` — topic table (13 topics); `rules/topics/<file>` — one row per rule; `rules/HLS/<ID>.md` / `rules/EXP/<ID>.md` — full rule
 
 ## Bottom line (keep even without reading the guide)
 
 - Do both tracks before writing code: Track 1 (similar designs from the KB API), then Track 2 (rule library).
 - The KB is **read-only**: use only the `GET` endpoints listed in the guide. Never send `POST` / `PUT` / `DELETE`, and do not try to record iterations.
-- Rules come only from `rules/` (IDs `HLS-####`, from AMD UG1399 v2023.2). Cite them by ID; do not cite `R###` / `P###` codes.
+- Rules come only from `rules/`: `HLS-####` from AMD UG1399 v2023.2, and `EXP-###` lessons from past designs (topic 16, always read it). Cite them by ID; do not cite `R###` / `P###` codes.
 - The task specification takes precedence over a rule or a past design when they conflict (e.g. interface, target part, data types).
 - Do not fabricate API results or rule content. If the API is unreachable or returns nothing, say so and continue with Track 2.
