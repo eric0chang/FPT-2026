@@ -8,6 +8,17 @@ disable-model-invocation: true
 
 This SKILL.md is only an entry point. The procedure lives in `reference/kb-guide.md` next to this file: **Read it before writing any HLS code**, then follow it.
 
+## Narrate the KB in the chat (required)
+
+The user watches the chat, not the tool calls. At these four points write chat text, with these headings:
+
+1. Before Track 1: `**KB Track 1** — searching past <type> designs in the KB...`
+2. After Track 1: `**KB Track 1 result**`, a table | Design | Part | Latency | Resources | What I reuse / what I change |, then one line: which design I follow and why.
+3. Before Track 2: `**KB Track 2** — topics I picked: <number and name of each>`
+4. After Track 2, before writing any HLS code: `**KB Track 2 result**`, a table | Rule | What it says (one line) | Where in my code | (only rules whose file you opened).
+
+Later, when a step follows a rule, name it (e.g. "pipelining the MAC loop, HLS-1032").
+
 ## Files
 
 - `reference/kb-guide.md` — KB API (Track 1), rule lookup (Track 2), how to cite rules
@@ -20,17 +31,3 @@ This SKILL.md is only an entry point. The procedure lives in `reference/kb-guide
 - Rules come only from `rules/` (IDs `HLS-####`, from AMD UG1399 v2023.2). Cite them by ID; do not cite `R###` / `P###` codes.
 - The task specification takes precedence over a rule or a past design when they conflict (e.g. interface, target part, data types).
 - Do not fabricate API results or rule content. If the API is unreachable or returns nothing, say so and continue with Track 2.
-
-## Show the KB use in the chat (not only in tool calls)
-
-Write these two blocks as chat text, before writing any HLS code:
-
-**KB Track 1 — similar designs**
-| Design | Part | Latency | What I reuse / what I change |
-(the top 1–3 results; say "none relevant" if so)
-
-**KB Track 2 — rules I will apply**
-| Rule | What it says (one line) | Where in my code |
-(only rules whose file you opened)
-
-When a later step follows a rule, name it (e.g. "pipelining the MAC loop, HLS-1032").
