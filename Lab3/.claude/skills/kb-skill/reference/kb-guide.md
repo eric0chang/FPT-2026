@@ -34,7 +34,7 @@ Unknown `project_type` returns `200` with `results: []`. Types in use: `cnn`, `a
 2. Pick the 1–3 entries closest to the task (same kind of model, same interface, same target). Read `approach_description`, `pragmas_used`, `cursor_reasoning`; parse `resource_usage` with `jq 'fromjson'`.
 3. For the closest entry, fetch the code: `curl -s "$KB/api/design/<iteration_id>/code" | jq -r '.code_snapshot'`. Reuse what fits; adapt everything the task specification defines differently (interface, data types, part, clock).
 4. Note what you took: project name, iteration, and the techniques reused. Use `pragmas_used` to pick topics in Track 2.
-5. Write in the chat: `**KB Track 1 result**`, a table | Design | Part | Latency | Resources | What I reuse / what I change | (1–3 rows, or "none relevant"), then one line: which design you follow and why.
+5. Write in the chat: `**KB Track 1 result**`, a table | Design | Part | Latency | Resources | What I reuse / what I change | (1–3 rows, or "none relevant"), then one line: which design you follow and why. Compare its resources and latency with the spec limits, and say what you change to meet them.
 
 Older entries may cite retired `R###` / `P###` codes. Read them as plain text; cite the matching `HLS-####` rule instead.
 
@@ -51,7 +51,7 @@ Older entries may cite retired `R###` / `P###` codes. Read them as plain text; c
 
 **Step 3: Open the rule files.** For every candidate you apply, and every constraint you are unsure about, read `rules/HLS/<ID>.md`: mechanism, exact conditions, cost, how to check the effect (report line or warning), UG1399 page.
 
-**Step 4: Report, before writing any HLS code.** Write in the chat: `**KB Track 2 result**`, a table | Rule | What it says (one line) | Where in my code | — only rules whose file you opened.
+**Step 4: Report, before writing any HLS code.** Write in the chat: `**KB Track 2 result**`, a table | Rule | What it says (one line) | Where in my code | — only rules whose file you opened. Write it before running anything else (tool checks, Python, file writes). Keep it to the 5–10 rules that matter most.
 
 **Step 5: Search when a topic does not cover the problem** (e.g. a new csynth warning):
 
