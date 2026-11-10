@@ -41,7 +41,7 @@ Older entries may cite retired `R###` / `P###` codes. Read them as plain text; c
 
 ## Track 2: rule library (local files)
 
-230 UG1399 rules in 12 topics, plus topic 16 (6 `EXP-###` lessons from past designs, always read it) — a subset of the full library, chosen for single-kernel AXI-Stream IP in the Vivado IP flow. Rule types: `must` / `must-not` (otherwise synthesis error, wrong results, deadlock or an ignored pragma), `recipe` (how to get an effect), `direction` (trade-off with its condition), `pitfall` (symptom -> cause -> fix).
+230 UG1399 rules in 12 topics, plus topic 16 (2 `EXP-###` lessons from past designs, always read it) — a subset of the full library, chosen for single-kernel AXI-Stream IP in the Vivado IP flow. Rule types: `must` / `must-not` (otherwise synthesis error, wrong results, deadlock or an ignored pragma), `recipe` (how to get an effect), `direction` (trade-off with its condition), `pitfall` (symptom -> cause -> fix).
 
 **Step 1: Pick topics.** Read `rules/index.md` (topic table only, about 25 lines). From the task specification and the Track 1 results, list the topics this design touches — usually several. Example: an AXI-Stream CNN accelerator touches *Interfaces and block protocols*, *Streams and FIFOs*, *Loops, pipelining and II*, *Arrays and on-chip memory*, *Data types*, *Verification*, plus *Dataflow* if it is split into tasks, and always *16 Lessons from past designs*. Then write in the chat: `**KB Track 2** — topics I picked: <number and name of each>`.
 

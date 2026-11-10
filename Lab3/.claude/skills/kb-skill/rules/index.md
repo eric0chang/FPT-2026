@@ -22,4 +22,4 @@ Types: `must` / `must-not` = requirement (otherwise synthesis error, wrong resul
 | 13 | Resources, binding and sharing | 11 | topics/13-resources-binding-and-sharing.md | BIND_OP, ALLOCATION, DSP mapping, operator sharing, expression balancing |
 | 14 | Unsupported constructs and coding rules | 11 | topics/14-unsupported-constructs-and-coding-rules.md | dynamic memory, pointers, volatile, system calls, __SYNTHESIS__, undefined behaviour |
 | 15 | Reports, timing and tool flow | 17 | topics/15-reports-timing-and-tool-flow.md | reading synthesis reports, clock/timing, tool settings, runtime, general design flow |
-| 16 | Lessons from past designs (always read) | 6 | topics/16-lessons-from-past-designs.md | reusing a Track 1 design, convolution loop structure, latency estimate, reading csynth timing, float accumulation (`EXP-###`, not UG1399) |
+| 16 | Lessons from past designs (always read) | 2 | topics/16-lessons-from-past-designs.md | reusing a Track 1 design, float accumulation (`EXP-###`, not UG1399) |
