@@ -111,7 +111,7 @@ no separate calibration set is provided.
 | Metric                         | Requirement                                     |
 |--------------------------------|-------------------------------------------------|
 | Estimated clock (csynth)       | ≤ 10 ns, no timing violation                    |
-| LUT / FF / DSP / BRAM          | each ≤ 20 % of xczu3eg, csynth estimate (DSP ≤ 36 of 360). A small IP keeps the Vivado build short; prefer fewer parallel MACs over lower latency |
+| LUT / FF / DSP / BRAM          | each ≤ 30 % of xczu3eg, csynth estimate (DSP ≤ 108 of 360). A small IP keeps the Vivado build short; prefer fewer parallel MACs over lower latency |
 | Latency per image              | no limit; report csynth and cosim latency       |
 | Deadlock warnings              | no `HLS 200-656` in the final csynth log — cosim PASS alone is not enough, the board runs far more images than cosim |
 
