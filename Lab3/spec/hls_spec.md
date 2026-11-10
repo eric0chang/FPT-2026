@@ -123,9 +123,8 @@ single csynth run).
 
 The flow runs to **cosim and IP export**, with one csynth run:
 
-0. **Knowledge Base** (`/kb-skill`): Track 1 (similar past designs, type `cnn`)
-   and Track 2 (rule library) before writing any code. After the IP export (step 5),
-   record the final design in the KB once (kb-skill guide, "Write-back").
+0. **Knowledge Base** (`/kb-skill`, read-only): Track 1 (similar past designs, type `cnn`)
+   and Track 2 (rule library) before writing any code. Do not record anything in the KB.
 1. **Extract** weights from the `.h5` with Python into `hls/lenet_weights.inc` (format
    is the designer's choice, e.g. float literals in Keras layout), and the first **20**
    images of `data/mnist_test_1000.npz` (pixels as uint8 integers, labels and

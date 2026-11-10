@@ -1,4 +1,4 @@
-# HLS Knowledge Base — lookup guide (recording build: reads, plus one write-back)
+# HLS Knowledge Base — lookup guide (read-only)
 
 The Knowledge Base has two parts that complement each other:
 
@@ -15,7 +15,7 @@ Paths below are relative to this skill folder (`.claude/skills/kb-skill/` under 
 ## Track 1: past designs (KB API, GET only)
 
 ```bash
-KB=${KB_API:-http://localhost:8003}                     # recording KB (writable copy)
+KB=${KB_API:-http://localhost:8002}                     # tutorial KB, read-only
 curl -s "$KB/health"                                    # reachable?
 ```
 
@@ -67,28 +67,6 @@ grep -il "200-656\|deadlock" $R/HLS/*.md # deadlock warning in the csynth log
 3. Cost — a `direction` rule states its cost; weigh it against the task limits (resources, latency) before applying it.
 
 Keep the set focused: a few rules that match the design beat a long list. Your own analysis of the csynth report is as valid as the library; use the rules to avoid violating a `must` / `must-not` and to find techniques you would not otherwise try. If a rule says the manual contradicts itself on a point, follow the safe action it states.
-
-## Write-back (once, after the IP export)
-
-Record the final design so the next run finds it in Track 1. Only after csim, the final csynth and cosim pass and the IP is exported; never record a failed or intermediate design.
-
-1. project_id: `curl -s "$KB/api/projects?type=cnn&limit=200" | jq -r '.results[] | select(.name=="LeNet_HardSwish_Fixed_AXIS_AUPZU3") | .id'`. Empty: generate one (`python3 -c 'import uuid; print(uuid.uuid4())'`); the API then creates the project.
-2. Build `hls/tmp/kb_record.json` with Python (`json.dump`, so the code is escaped correctly), numbers from the final csynth report:
-   ```json
-   {"project_id": "<id>", "project_name": "LeNet_HardSwish_Fixed_AXIS_AUPZU3", "project_type": "cnn",
-    "target_device": "xczu3eg-sfvc784-2-e",
-    "iteration": {"project_id": "<same id>", "approach_description": "<2-3 sentences: structure, data types, lanes>",
-                  "code_snapshot": "<lenet.h + lenet.cpp + run_hls.tcl, each preceded by // ===== <file> =====>",
-                  "pragmas_used": ["<one string per pragma kind>"],
-                  "cursor_reasoning": "<Track 1 design followed, what changed and why>",
-                  "user_specification": "<spec limits in one line>"},
-    "synthesis_result": {"ii_achieved": <top interval>, "ii_target": <top interval>, "latency_cycles": <csynth latency>,
-                         "timing_met": true, "clock_period_ns": 10.0,
-                         "resource_usage": {"LUT": 0, "FF": 0, "DSP": 0, "BRAM": 0}},
-    "rules_applied": [{"rule_code": "HLS-####", "previous_ii": 1, "current_ii": 1, "success": true}]}
-   ```
-3. `curl -s -X POST "$KB/api/design/complete_iteration" -H 'Content-Type: application/json' -d @hls/tmp/kb_record.json`
-4. Write in the chat: `**KB write-back**` — project name, `iteration_number`, `iteration_id` from the response. If the call fails, show the error and continue; do not retry with other endpoints.
 
 
 ## Citing rules
