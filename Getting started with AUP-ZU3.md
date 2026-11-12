@@ -72,7 +72,6 @@ The power source can be:
 # PYNQ Boot Sequence
 
 After setting up and powering on the board, you should see the following boot sequence.
-<img width="400" height="330" alt="image" src="https://github.com/user-attachments/assets/29baddce-5cc0-442e-bf51-f91328009310" /> <br>
 
 
 ## Step 1: Power LEDs
