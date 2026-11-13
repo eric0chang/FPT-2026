@@ -34,7 +34,6 @@ axi4-debug-simulation/
 When you are in vivado environment, (vivado%)
 
 ```bash
-cd axi4-debug-simulation/
 source scripts/create_project.tcl
 ```
 
