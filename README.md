@@ -13,6 +13,7 @@ This document will guide user how to link remote server and setup LLM and Vivado
 
 - Open Folder as wrokspace and input password again
   <img width="2284" height="1088" alt="image" src="https://github.com/user-attachments/assets/7bb68641-c70f-4a12-b606-5925c03487e7" />
+  select Lab1 folder: /home/ross-user1/workspace/Lab1
   <img width="2316" height="570" alt="image" src="https://github.com/user-attachments/assets/03f6eb23-82ed-42c9-bc96-4ac984582e9d" />
 
 
