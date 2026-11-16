@@ -45,9 +45,9 @@ Lab3/
 | Item | Value |
 |------|-------|
 | Lab2 | Finished, with its Vivado project in `../Lab2/vivado/` (otherwise the agent rebuilds the platform from `spec/hardware_spec.md`) |
-| AI agent | Claude Code CLI (`claude`) |
+| AI agent | Chat in VS Code or Cursor, using a Claude model |
 | HLS Knowledge Base | KB API reachable (read-only); the skill is already in `.claude/skills/kb-skill/` |
-| Vivado MCP server | Configured for Claude Code, same as Lab2 |
+| Vivado MCP server | Configured in VS Code / Cursor, same as Lab2 |
 | Vitis HLS / Vivado | 2025.2 |
 | Board | AUP-ZU3 8GB with a PYNQ image |
 
@@ -55,16 +55,13 @@ Lab3/
 
 ### Step 1 — Open the example
 
-```bash
-cd Lab3
-claude
-```
+Open the `Lab3/` folder as your workspace in VS Code or Cursor.
 
-Type `/mcp` and check that the Vivado MCP server is connected.
+Make sure your MCP configuration points to the Vivado MCP server.
 
 ### Step 2 — Build the HLS IP and the bitstream
 
-Paste this prompt into Claude:
+Open your AI agent chat and paste this prompt:
 
 ```
 /kb-skill
@@ -73,6 +70,7 @@ model/custom_layers.py) into a Vitis HLS IP according to spec/hls_spec.md.
 Write the HLS C++ from scratch, using the HLS Knowledge Base.
 Then swap the IP into the Lab2 block design according to spec/hardware_spec.md,
 build through bitstream and report timing.
+Use the Vivado MCP tools for all Vivado steps; do not write and run Tcl scripts yourself.
 ```
 
 `/kb-skill` loads the Knowledge Base. The agent then reads the specs and autonomously:

@@ -11,6 +11,7 @@ model/custom_layers.py) into a Vitis HLS IP according to spec/hls_spec.md.
 Write the HLS C++ from scratch, using the HLS Knowledge Base.
 Then swap the IP into the Lab2 block design according to spec/hardware_spec.md,
 build through bitstream and report timing.
+Use the Vivado MCP tools for all Vivado steps; do not write and run Tcl scripts yourself.
 ```
 
 ---
