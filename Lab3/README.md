@@ -104,10 +104,21 @@ The block design is the Lab2 design with one block swapped: DMA `M_AXIS_MM2S` �
 
 ### Step 4 — Load bitstream on AUP-ZU3 through PYNQ Jupyter Notebook
 
-The build places `lenet.bit` and `lenet.hwh` in `pynq/` (`spec/hardware_spec.md` §8). Also copy the test set next to the notebook:
+The build should already place `lenet.bit` and `lenet.hwh` in `pynq/` (`spec/hardware_spec.md` §8). If they are missing, or you rebuilt in Vivado by hand, copy them from the Vivado project. Then copy the test set next to the notebook. Run these from the `Lab3/` folder:
 
 ```bash
+# bitstream + hardware handoff (must come from the same build; same base name "lenet")
+cp vivado/aup_zu3_lenet.runs/impl_1/design_1_wrapper.bit                   pynq/lenet.bit
+cp vivado/aup_zu3_lenet.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh  pynq/lenet.hwh
+
+# test images, labels and Keras reference outputs
 cp data/mnist_test_1000.npz pynq/
+```
+
+Check that `pynq/` now contains `lenet.bit`, `lenet.hwh`, `mnist_test_1000.npz` and the notebook (`lenet_inference.ipynb`):
+
+```bash
+ls pynq/
 ```
 
 Copy the `.bit`, `.hwh`, `.npz` and `.ipynb` to the board:
